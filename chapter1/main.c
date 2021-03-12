@@ -33,9 +33,15 @@ void eofAndGetchar();
  * */
 void spaceCounter();
 
+/**
+ Copies the input stream to the output stream replacing several consecutive spaces with one
+ Task 1.9
+ */
+void copyInToOutStream();
+
 int main() {
     printf(">>> Hello, C world! <<<\n");
-    spaceCounter();
+    copyInToOutStream();
     return 0;
 }
 
@@ -85,4 +91,17 @@ void spaceCounter() {
         if (c == ' ') ++spaceCount;
     }
     printf("New lines: %2d, Tabs: %2d, Spaces: %2d", newlineCount, tabCount, spaceCount);
+}
+
+void copyInToOutStream() {
+    int c;
+    int spaceCount = 0;
+    while ((c = getchar()) != EOF) {
+        if (c == ' ') {
+            ++spaceCount;
+        } else {
+            spaceCount = 0;
+        }
+        if (spaceCount <= 1) putchar(c);
+    }
 }
