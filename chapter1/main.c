@@ -36,12 +36,19 @@ void spaceCounter();
 /**
  Copies the input stream to the output stream replacing several consecutive spaces with one
  Task 1.9
+ Task 1.10 - similar solution
  */
 void copyInToOutStream();
 
+/**
+ Prints each word on a new line
+ Task 1.12
+ */
+void showWorldsInLines();
+
 int main() {
     printf(">>> Hello, C world! <<<\n");
-    copyInToOutStream();
+    showWorldsInLines();
     return 0;
 }
 
@@ -103,5 +110,19 @@ void copyInToOutStream() {
             spaceCount = 0;
         }
         if (spaceCount <= 1) putchar(c);
+    }
+}
+
+void showWorldsInLines() {
+    int c;
+    int counter = 0;
+    while ((c = getchar()) != EOF) {
+        if (c == ' ' || c == '\t') {
+            c = '\n';
+            ++counter;
+        } else {
+            counter = 0;
+        }
+        if (counter <= 1) putchar(c);
     }
 }
