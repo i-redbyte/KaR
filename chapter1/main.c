@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+#define WORLD_SIZE 11
+
 /**
   Show Fahrenheit to Celsius Conversion Table
   (°F − 32) × 5/9 = °C
@@ -46,9 +48,18 @@ void copyInToOutStream();
  */
 void showWorldsInLines();
 
+/**
+  Vertical histogram of counting word lengths
+  Task 1.13
+ */
+void verticalHistogramOfWordLen();
+
+void showHistogram(const int *lengthFrequency, int verticalSize);
+
+
 int main() {
     printf(">>> Hello, C world! <<<\n");
-    showWorldsInLines();
+    verticalHistogramOfWordLen();
     return 0;
 }
 
@@ -125,4 +136,57 @@ void showWorldsInLines() {
         }
         if (counter <= 1) putchar(c);
     }
+}
+
+void verticalHistogramOfWordLen() {
+    int lengthFrequency[WORLD_SIZE];
+    int len, verticalSize;
+    int c, i;
+    len = verticalSize = 0;
+    for (i = 0; i < WORLD_SIZE; ++i) lengthFrequency[i] = 0;
+
+    while ((c = getchar()) != EOF) {
+        if (c != ' ' && c != '\n' && c != '\t') {
+            ++len;
+        } else if (len != 0) {
+            if (len < WORLD_SIZE) {
+                ++lengthFrequency[len - 1];
+                if (verticalSize < lengthFrequency[len - 1])
+                    verticalSize = lengthFrequency[len - 1];
+            } else {
+                ++lengthFrequency[WORLD_SIZE - 1];
+                if (verticalSize < lengthFrequency[WORLD_SIZE - 1])
+                    verticalSize = lengthFrequency[WORLD_SIZE - 1];
+            }
+            len = 0;
+        }
+    }
+
+    showHistogram(lengthFrequency, verticalSize);
+
+}
+
+void showHistogram(const int *lengthFrequency, int verticalSize) {
+    for (int i = verticalSize; i > 0; --i) {
+        printf("%2d|", i);
+        for (int j = 0; j < WORLD_SIZE; ++j) {
+            if (lengthFrequency[j] >= i)
+                printf("   #");
+            else
+                printf("    ");
+        }
+        printf("\n");
+    }
+
+    printf("  ∟");
+    printf("____________________________________________");
+    printf("\n   ");
+
+    for (int i = 0; i < WORLD_SIZE; ++i) {
+        if (i < WORLD_SIZE - 1)
+            printf("%4d", i + 1);
+        else
+            printf(" +%d", i);
+    }
+    printf("\n");
 }
