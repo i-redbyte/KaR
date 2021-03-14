@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #define WORLD_SIZE 11
+#define CHARS_SIZE 94
 
 /**
   Show Fahrenheit to Celsius Conversion Table
@@ -54,12 +55,17 @@ void showWorldsInLines();
  */
 void verticalHistogramOfWordLen();
 
-void showHistogram(const int *lengthFrequency, int verticalSize);
+void showWordLenHistogram(const int *lengthFrequency, int verticalSize);
 
+/**
+ Character frequency histogram
+ Task 1.14
+ */
+void charFreqHistogram();
 
 int main() {
     printf(">>> Hello, C world! <<<\n");
-    verticalHistogramOfWordLen();
+    charFreqHistogram();
     return 0;
 }
 
@@ -162,11 +168,11 @@ void verticalHistogramOfWordLen() {
         }
     }
 
-    showHistogram(lengthFrequency, verticalSize);
+    showWordLenHistogram(lengthFrequency, verticalSize);
 
 }
 
-void showHistogram(const int *lengthFrequency, int verticalSize) {
+void showWordLenHistogram(const int *lengthFrequency, int verticalSize) {
     for (int i = verticalSize; i > 0; --i) {
         printf("%2d|", i);
         for (int j = 0; j < WORLD_SIZE; ++j) {
@@ -188,5 +194,36 @@ void showHistogram(const int *lengthFrequency, int verticalSize) {
         else
             printf(" +%d", i);
     }
+    printf("\n");
+}
+
+void charFreqHistogram() {
+    int charFreq[CHARS_SIZE];
+    int c;
+    int max = 0;
+
+    for (int i = 0; i < CHARS_SIZE; ++i) charFreq[i] = 0;
+
+    while ((c = getchar()) != EOF) {
+        int value = c - 33;
+        if (33 <= c && c <= 126) {
+            ++charFreq[value];
+            if (max < charFreq[value]) max = charFreq[value];
+        }
+    }
+    for (int i = max; i > 0; --i) {
+        printf("%4d|", i);
+        for (int k = 0; k < CHARS_SIZE; ++k) {
+            if (charFreq[k] >= i)
+                printf("#");
+            else
+                printf(" ");
+        }
+        printf("\n");
+    }
+    printf("    +");
+    for (int i = 0; i <= CHARS_SIZE - 1; ++i) printf("-");
+    printf("\n     ");
+    for (int i = 0; i <= CHARS_SIZE - 1; ++i) printf("%c", i + 33);
     printf("\n");
 }
