@@ -63,9 +63,19 @@ void showWordLenHistogram(const int *lengthFrequency, int verticalSize);
  */
 void charFreqHistogram();
 
+/**
+ Change temperature conversion from task 1.3 to function
+ Task 1.15
+ */
+float fahrToCels(float temperature);
+
+float celsToFahr(float temperature);
+
+void convertTemperature();
+
 int main() {
     printf(">>> Hello, C world! <<<\n");
-    charFreqHistogram();
+    convertTemperature();
     return 0;
 }
 
@@ -226,4 +236,30 @@ void charFreqHistogram() {
     printf("\n     ");
     for (int i = 0; i <= CHARS_SIZE - 1; ++i) printf("%c", i + 33);
     printf("\n");
+}
+
+float fahrToCels(float temperature) {
+    return (5.0 / 9.0) * (temperature - 32.0);
+}
+
+float celsToFahr(float temperature) {
+    return (9.0 / 5.0 * temperature) + 32.0;
+}
+
+void convertTemperature() {
+    printf("===Celsius to Fahrenheit: \n");
+    int lower = 0, upper = 300, step = 20;
+    float cel = lower;
+    while (cel <= upper) {
+        printf("%3.0f %6.1f\n", cel, celsToFahr(cel));
+        cel = cel + step;
+    }
+    printf("\n");
+    printf("===Fahrenheit to Celsius: \n");
+    float farh = lower;
+    while (farh <= upper) {
+        printf("%3.0f %6.1f\n", farh, fahrToCels(farh));
+        farh = farh + step;
+    }
+
 }
