@@ -6,15 +6,15 @@
 #define SPACE ' '
 
 int main(void) {
-    int input_symbols[2], space_symbols[2];
+    int space_symbols[2];
     space_symbols[SPACE_POSITION] = space_symbols[TAB_POSITION] = 0;
-    input_symbols[0] = '\n';
-
-    while ((input_symbols[1] = getchar()) != EOF) {
-        if (input_symbols[1] == ' ') space_symbols[SPACE_POSITION]++;
-        else if (input_symbols[1] == '\t') space_symbols[TAB_POSITION]++;
+    int input_symbols = 0;
+    int last = '\n';
+    while ((input_symbols = getchar()) != EOF) {
+        if (input_symbols == ' ') space_symbols[SPACE_POSITION]++;
+        else if (input_symbols == '\t') space_symbols[TAB_POSITION]++;
         else {
-            if (input_symbols[1] != '\n' && (space_symbols[TAB_POSITION] + space_symbols[SPACE_POSITION]) > 0) {
+            if (input_symbols != '\n' && (space_symbols[TAB_POSITION] + space_symbols[SPACE_POSITION]) > 0) {
                 if (space_symbols[TAB_POSITION] > 0) {
                     space_symbols[TAB_POSITION]--;
                     putchar(TAB);
@@ -23,14 +23,14 @@ int main(void) {
                     space_symbols[SPACE_POSITION]--;
                     putchar(SPACE);
                 }
-                putchar(input_symbols[1]);
-            } else if (input_symbols[1] == '\n' && input_symbols[0] == '\n')/*no-op*/;
-            else putchar(input_symbols[1]);
+                putchar(input_symbols);
+            } else if (input_symbols == '\n' && last == '\n')/*no-op*/;
+            else putchar(input_symbols);
 
             if (space_symbols[TAB_POSITION] > 0) space_symbols[TAB_POSITION] = 0;
             if (space_symbols[SPACE_POSITION] > 0) space_symbols[SPACE_POSITION] = 0;
 
-            input_symbols[0] = input_symbols[1];
+            last = input_symbols;
         }
     }
 
