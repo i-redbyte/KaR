@@ -2,7 +2,7 @@
 
 #define MAXLENGTH 20
 
-int get_line(char [], int);
+int get_line(char *, int);
 
 void copy(char [], char []);
 
@@ -20,7 +20,7 @@ int main() {
     return 0;
 }
 
-int get_line(char line[], int limit) {
+int get_line(char *line, int limit) {
     int i, c;
     for (i = 0; i < limit - 1 && (((c = getchar()) != EOF) && (c != '\n')); i++)
         line[i] = c;
