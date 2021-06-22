@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 unsigned  invert(unsigned x, int p, int n){
-    unsigned mask = (~(~0 << p)) ^ ~(~0 << p-n);
+    unsigned mask = (~(~0 << p)) ^ ~(~0 << (p-n));
     return ((x & ~mask) | (~x & mask));
 }
 int main(void) {
