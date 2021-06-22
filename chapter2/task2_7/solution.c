@@ -1,9 +1,10 @@
 #include <stdio.h>
 
-unsigned  invert(unsigned x, int p, int n){
-    unsigned mask = (~(~0 << p)) ^ ~(~0 << (p-n));
+unsigned invert(unsigned x, int p, int n) {
+    unsigned mask = (~(~0 << p)) ^ ~(~0 << (p - n));
     return ((x & ~mask) | (~x & mask));
 }
+
 int main(void) {
     printf("%d\n", invert(255, 8, 8));
     printf("%d\n", invert(84, 3, 4));
