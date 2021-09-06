@@ -6,4 +6,5 @@ add_executable(chapter4_task2 "task2/solution.c")
 add_executable(chapter4_task3 "task3/solution.c")
 add_executable(chapter4_task4 "task4/solution.c")
 add_executable(chapter4_task5 "task5/solution.c")
+add_executable(chapter4_task6 "task6/solution.c")
 
