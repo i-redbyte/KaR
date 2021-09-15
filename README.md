@@ -2,7 +2,9 @@
 
 **Solving problems from the classic book by Kernighan and Ritchie**
 
-!["Kernighan and Ritchie"](./pictures/kar_book.jpg)
+<p align="center">
+<img src="https://github.com/i-redbyte/KaR/blob/master/pictures/kar_book.jpg?raw=true" alt="C language" width="45%" height="45%">
+</p>
 
 1. [Обзор языка (A Tutorial Introduction)](/chapter1)
 2. [Типы, операторы и выражения (Types, Operators and Expressions)](/chapter2)
