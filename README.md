@@ -10,6 +10,7 @@
 2. [Типы, операторы и выражения (Types, Operators and Expressions)](/chapter2)
 3. [Управление(Control Flow)](/chapter3)
 4. [Функции и структура программы (Functions and Program Structure)](/chapter4)
+5. [Указатели и массивы (Pointers and Arrays)](/chapter5)
 
 ```
  _____       _          __             
