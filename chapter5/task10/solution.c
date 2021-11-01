@@ -14,19 +14,19 @@ int main(int argc, char *argv[]) {
         else if (*argv[0] == '-') {
             point_data -= 2;
             *point_data = *point_data - *(point_data + 1);
-            ++point_data;
+            point_data++;
         } else if (*argv[0] == '/') {
             point_data -= 2;
             *point_data = *point_data / *(point_data + 1);
-            ++point_data;
-        } else if (*argv[0] == '*') {
+            point_data++;
+        } else if (*argv[0] == 'x') { //todo: symbol '*' don't work
             point_data -= 2;
             *point_data = (*point_data) * (*(point_data + 1));
-            ++point_data;
+            point_data++;
         } else if (*argv[0] == '+') {
             point_data -= 2;
             *point_data = *point_data + *(point_data + 1);
-            ++point_data;
+            point_data++;
         } else {
             argc = 1;
         }
